@@ -5,5 +5,5 @@ edition = "2024"
 
 [dependencies]
 # console_error_panic_hook = "0.1.7"
+# neocities = "0.9.1"
 leptos = { version = "0.7.8", features = ["csr"] }
-neocities = "0.9.1"
