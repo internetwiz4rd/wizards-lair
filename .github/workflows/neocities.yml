@@ -15,10 +15,8 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
-    steps:
       # The checkout step copies your repo into the action runner. Important!
       - uses: actions/checkout@v4
       # Set up any tools and build steps here
@@ -29,6 +27,11 @@ jobs:
         run: |
           cargo install --locked trunk
           trunk build --release
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
       # When the dist_dir is ready, deploy it to neocities
       # Here we deploy the folder named `public`
       - name: Deploy to neocities
