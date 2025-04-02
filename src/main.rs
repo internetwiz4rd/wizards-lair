@@ -1,11 +1,6 @@
 use leptos::prelude::*;
-use neocities::{self, Neocities};
 
 fn main() {
-    let api_key = String::from("b286a1fe030f141ccb4d514897e2cc19");
-
-    let instance: Neocities = Neocities::new(api_key);
-
     leptos::mount::mount_to_body(|| view! { 
         <h1>"Welcome to my lair..."</h1>
         <h2>"A work in progress space on the internet"</h2>
