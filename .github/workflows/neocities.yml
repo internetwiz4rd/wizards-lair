@@ -16,8 +16,11 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Build w/ Trunk
+    runs-on:
+      ubuntu-latest
       # The checkout step copies your repo into the action runner. Important!
+    steps:
       - uses: actions/checkout@v4
       # Set up any tools and build steps here
       # This example uses a Node.js toolchain to build a site
@@ -29,6 +32,7 @@ jobs:
           trunk build --release
 
   deploy:
+    name: Deploys static site to Neocities
     runs-on: ubuntu-latest
 
     steps:
