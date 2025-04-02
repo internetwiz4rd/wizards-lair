@@ -29,7 +29,7 @@ jobs:
       - name: Install deps and build
         run: |
           rustup target add wasm32-unknown-unknown
-          cargo install --locked trunk
+          cargo install --git https://github.com/trunk-rs/trunk trunk
           trunk build --release
 
   deploy:
