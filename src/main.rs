@@ -18,15 +18,20 @@ fn main() {
 }
 
 fn counting_button() -> impl IntoView {
-    let (count, set_count) = signal(0);
+    let (count, set_count) = signal(5);
 
     view! {
         <button
             on:click=move |_| {
                 *set_count.write() += 1;
-            }
-        >
+        }>
             "Click me: " { count }
+        </button>
+        <button
+            on:click=move |_| {
+                *set_count.write() = 0;
+        }>
+            "Reset"
         </button>
     }
 }
