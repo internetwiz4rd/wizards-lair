@@ -8,3 +8,4 @@ edition = "2024"
 # neocities = "0.9.1"
 leptos = { version = "0.7.8", features = ["csr"] }
 leptos_router = "0.7.8"
+stylance = "0.5.5"

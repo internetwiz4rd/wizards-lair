@@ -1,11 +1,12 @@
 use leptos::prelude::*;
+// use stylance::*;
 // use leptos_router::components::*;
 // use leptos_router::path;
 // use leptos_router::hooks::use_params_map;
 
 fn main() {
     leptos::mount::mount_to_body(Intro);
-    leptos::mount::mount_to_body(CountingButton);
+    leptos::mount::mount_to_body(StatusCafe);
     leptos::mount::mount_to_body(GuestBook);
 }
 
@@ -24,60 +25,20 @@ fn Intro() -> impl IntoView {
     }
 }
 
-#[component]
-fn CountingButton() -> impl IntoView {
-    let (count, set_count) = signal(5);
-    let double_count = move || count.get() *2;
-
-    view! {
-        <button
-            on:click=move |_| {
-                *set_count.write() += 1;
-            }
-
-            class=("red", move || count.get() % 2 == 1)
-        >
-            "Click me: " { count }
-        </button>
-
-        <ProgressBar max=100 progress=count/>
-        <ProgressBar progress=Signal::derive(double_count)/>
-
-        <button
-            on:click=move |_| {
-                *set_count.write() = 0;
-            }
-        >
-            "Reset"
-        </button>
-    }
-}
-
 // Shows guest book button
 #[component]
 fn GuestBook() -> impl IntoView {
     view! {
         <a href="http://users3.smartgb.com/g/g.php?a=s&i=g36-38298-df">
-            <img src="assets/written_in_vi.gif"/>
+            <img src="written_in_vi.gif"/>
         </a>
     }
 }
 
-// Shows progress bar
 #[component]
-fn ProgressBar(
-    // Maximum value for the progress bar
-    #[prop(default = 100)]
-    max: u16,
-    // How much progress to disply
-    #[prop(into)]
-    progress: Signal<i32>
-) -> impl IntoView {
+fn StatusCafe() -> impl IntoView {
     view! {
-        <progress
-            max=max
-            value=progress
-        />
+        <div id="statuscafe"><div id="statuscafe-username"></div><div id="statuscafe-content"></div></div><script src="https://status.cafe/current-status.js?name=internet_wizard" defer></script>
         <br/>
     }
 }
