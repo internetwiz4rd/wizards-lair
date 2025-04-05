@@ -1,7 +1,11 @@
-all: build deploy
+all: test
+
+test: 
+	trunk serve --open
 
 build:
 	trunk build --release
 
-deploy:
+deploy: build
 	neocities push --prune dist/
+
