@@ -1,6 +1,6 @@
-mod wizardslair;
+use wizardslair::app;
 
 fn main() {
-   leptos::mount::mount_to_body(wizardslair::app::App); 
+   leptos::mount::mount_to_body(app::App); 
 }
 
