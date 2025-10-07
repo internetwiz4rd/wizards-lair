@@ -5,13 +5,8 @@ pub fn Intro() -> impl IntoView {
     view! {
             <h1>"Welcome to my lair..."</h1>
             <h2>"A work in progress space on the internet"</h2>
-            <p>"I need to create a place to put all my shit in here."</p>
+            <p>"Finally back at it! Gonna do my best to create a pretty looking site :)"</p>
 
-            <p>"TODO"</p>
-            <ul>
-            <li>"Figure out site structure"</li>
-            <li>"Create a skeleton with interactive functionality via Leptos"</li>
-            </ul>
     }
 }
 
