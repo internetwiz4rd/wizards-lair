@@ -3,7 +3,10 @@ all: test
 test: 
 	trunk serve --open
 
-build:
+clean:
+	trunk clean
+
+build: clean
 	trunk build --release
 
 deploy: build
