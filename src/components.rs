@@ -2,7 +2,7 @@ use leptos::prelude::*;
 
 #[component]
 pub fn Intro() -> impl IntoView {
-    view! { 
+    view! {
             <h1>"Welcome to my lair..."</h1>
             <h2>"A work in progress space on the internet"</h2>
             <p>"I need to create a place to put all my shit in here."</p>
@@ -23,10 +23,10 @@ pub fn GuestBook() -> impl IntoView {
             <img src="assets/written_in_vi.gif"/>
         </a>
     }
-    }
+}
 
-    #[component]
-    pub fn StatusCafe() -> impl IntoView {
+#[component]
+pub fn StatusCafe() -> impl IntoView {
     view! {
         <div id="statuscafe"><div id="statuscafe-username"></div><div id="statuscafe-content"></div></div><script src="https://status.cafe/current-status.js?name=internet_wizard" defer></script>
         <br/>

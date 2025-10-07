@@ -1,0 +1,12 @@
+[tasks.clean]
+command = "trunk"
+args = ["clean"]
+
+[tasks.build]
+command = "trunk"
+args = ["build"]
+dependencies = ["clean"]
+
+[tasks.deploy]
+command = "neocities"
+dependencies = ["build"]

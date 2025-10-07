@@ -18,7 +18,7 @@
       system = "x86_64-linux";
       overlays = [(import rust-overlay)];
     };
-    rustToolchain = pkgs.rust-bin.stable.latest.default;
+    rustToolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
   in {
     devShells."x86_64-linux".default = pkgs.mkShell {
       buildInputs = with pkgs; [
