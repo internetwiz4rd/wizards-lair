@@ -1,6 +1,5 @@
 use wizardslair::app;
 
 fn main() {
-   leptos::mount::mount_to_body(app::App); 
+    leptos::mount::mount_to_body(app::App);
 }
-

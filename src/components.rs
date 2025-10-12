@@ -3,10 +3,9 @@ use leptos::prelude::*;
 #[component]
 pub fn Intro() -> impl IntoView {
     view! {
-            <h1>"Welcome to my lair..."</h1>
-            <h2>"A work in progress space on the internet"</h2>
-            <p>"Finally back at it! Gonna do my best to create a pretty looking site :)"</p>
-
+        <h1>"Welcome to my lair..."</h1>
+        <h2>"A work in progress space on the internet"</h2>
+        <p>"Finally back at it! Gonna do my best to create a pretty looking site :)"</p>
     }
 }
 
@@ -15,7 +14,7 @@ pub fn Intro() -> impl IntoView {
 pub fn GuestBook() -> impl IntoView {
     view! {
         <a href="http://users3.smartgb.com/g/g.php?a=s&i=g36-38298-df">
-            <img src="assets/written_in_vi.gif"/>
+            <img src="assets/written_in_vi.gif" />
         </a>
     }
 }
@@ -23,8 +22,12 @@ pub fn GuestBook() -> impl IntoView {
 #[component]
 pub fn StatusCafe() -> impl IntoView {
     view! {
-        <div id="statuscafe"><div id="statuscafe-username"></div><div id="statuscafe-content"></div></div><script src="https://status.cafe/current-status.js?name=internet_wizard" defer></script>
-        <br/>
+        <div id="statuscafe">
+            <div id="statuscafe-username"></div>
+            <div id="statuscafe-content"></div>
+        </div>
+        <script src="https://status.cafe/current-status.js?name=internet_wizard" defer></script>
+        <br />
     }
 }
 
@@ -35,17 +38,10 @@ pub fn EmailSpam() -> impl IntoView {
     let spam_me = RwSignal::new(true);
 
     view! {
-        <input type="text"
-            bind:value=(name, set_name)
-        />
-        <input type="email"
-            bind:value=email
-        />
+        <input type="text" bind:value=(name, set_name) />
+        <input type="email" bind:value=email />
         <label>
-            "Please send me lots of spam email."
-            <input type="checkbox"
-                bind:checked=spam_me
-            />
+            "Please send me lots of spam email." <input type="checkbox" bind:checked=spam_me />
         </label>
         <p>"Name is: " {name}</p>
         <p>"Email is: " {email}</p>

@@ -4,8 +4,8 @@ use leptos::prelude::*;
 #[component]
 pub fn App() -> impl IntoView {
     view! {
-        <components::Intro/>
-        <components::StatusCafe/>
-        <components::GuestBook/>
-    } 
+        <components::Intro />
+        <components::StatusCafe />
+        <components::GuestBook />
+    }
 }
