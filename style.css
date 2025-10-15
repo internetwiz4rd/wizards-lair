@@ -1,4 +1,34 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 h1,
 h2 {
   text-align: center;
+}
+
+nav {
+  position: absolute;
+  left: 0px;
+  width: 200px;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-left: 200px;
+}
+
+#statuscafe {
+  padding: 0.5em;
+  background-color: azure;
+  border: 1px solid midnightblue;
+}
+#statuscafe-username {
+  margin-bottom: 0.5em;
+}
+#statuscafe-content {
+  margin: 0 1em 0.5em 1em;
 }

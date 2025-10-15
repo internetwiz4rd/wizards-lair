@@ -1,4 +1,17 @@
+// TODO:
+//  - Add the markdown_view_leptos crate to the project
+//  - Figure out how to convert the blog posts at compile time, and serve them in O(1) time
+//  - Finish styling the websit, use a dark theme, and add some decorations
+//  - Create a workflow to
+//      - Edit blog posts in neovim or obsidian
+//      - Polish them up
+//      - Add them to the wizards-lair directory and publish them, with post metadata
+
 use leptos::prelude::*;
+use leptos_router::{
+    components::{Route, Router, Routes},
+    path,
+};
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -6,18 +19,49 @@ pub fn App() -> impl IntoView {
     let fallback = || view! { "Page not found" }.into_view();
 
     view! {
-        <Intro />
-        <StatusCafe />
-        <GuestBook />
+        <Router>
+            <nav>
+                <a href="/">"Home"</a>
+                <a href="/about">"About"</a>
+                <a href="/posts">"Posts"</a>
+            </nav>
+            <main>
+                <Routes fallback>
+                    <Route path=path!("/") view=Home />
+                    <Route path=path!("/about") view=About />
+                    <Route path=path!("/posts") view=Posts />
+                </Routes>
+            </main>
+        </Router>
     }
 }
 
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct Post {
+    title: String,
+    tags: Vec<String>,
+}
+
+#[derive(Debug)]
+pub enum PostError {
+    InvalidId,
+    PostNotFound,
+}
+
 #[component]
-pub fn Intro() -> impl IntoView {
+pub fn About() -> impl IntoView {
+    view! { <h1>"About me!!!"</h1> }
+}
+
+#[component]
+pub fn Home() -> impl IntoView {
     view! {
         <h1>"Welcome to my lair..."</h1>
         <h2>"A work in progress space on the internet"</h2>
-        <p>"Finally back at it! Gonna do my best to create a pretty looking site :)"</p>
+        <StatusCafe />
+        <footer>
+            <GuestBook />
+        </footer>
     }
 }
 
@@ -29,6 +73,11 @@ pub fn GuestBook() -> impl IntoView {
             <img src="assets/written_in_vi.gif" />
         </a>
     }
+}
+
+#[component]
+pub fn Posts() -> impl IntoView {
+    view! { <h1>"Blog Posts"</h1> }
 }
 
 #[component]
