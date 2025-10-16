@@ -1,5 +1,3 @@
-# This is a post!!!!
+# Test post!!!
 
-This is a test
-I am lord
-Fear my wrath
+I am testing out making a post :3

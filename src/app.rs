@@ -7,11 +7,14 @@
 //      - Polish them up
 //      - Add them to the wizards-lair directory and publish them, with post metadata
 
-use leptos::prelude::*;
+use leptos::{Params, prelude::*};
 use leptos_router::{
-    components::{Route, Router, Routes},
+    components::{Outlet, ParentRoute, Route, Router, Routes},
+    hooks::{use_params, use_query},
+    params::Params,
     path,
 };
+use markdown_view_leptos::markdown_view;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -21,25 +24,48 @@ pub fn App() -> impl IntoView {
     view! {
         <Router>
             <nav>
-                <a href="/">"Home"</a>
-                <a href="/about">"About"</a>
-                <a href="/posts">"Posts"</a>
+                <ul>
+                    <li>
+                        <a href="/">"Home"</a>
+                    </li>
+                    <li>
+                        <a href="/about">"About"</a>
+                    </li>
+                    <li>
+                        <a href="/blog">"Blog"</a>
+                    </li>
+                </ul>
             </nav>
             <main>
                 <Routes fallback>
                     <Route path=path!("/") view=Home />
                     <Route path=path!("/about") view=About />
-                    <Route path=path!("/posts") view=Posts />
+                    <ParentRoute path=path!("/blog") view=Blog>
+                        <Route path=path!(":id") view=Post />
+                        <Route path=path!("") view=PostList />
+                    </ParentRoute>
                 </Routes>
             </main>
         </Router>
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct Post {
-    title: String,
-    tags: Vec<String>,
+#[component]
+pub fn Home() -> impl IntoView {
+    view! {
+        <h1>"Welcome to my lair..."</h1>
+        <h2>"A work in progress space on the internet"</h2>
+        <StatusCafe />
+        <footer>
+            <GuestBook />
+        </footer>
+        <div class="fixed">"Hello!!"</div>
+    }
+}
+
+#[derive(Params, Clone, Debug, PartialEq, Eq)]
+pub struct PostParams {
+    id: Option<String>,
 }
 
 #[derive(Debug)]
@@ -54,14 +80,24 @@ pub fn About() -> impl IntoView {
 }
 
 #[component]
-pub fn Home() -> impl IntoView {
+pub fn Blog() -> impl IntoView {
     view! {
-        <h1>"Welcome to my lair..."</h1>
-        <h2>"A work in progress space on the internet"</h2>
-        <StatusCafe />
-        <footer>
-            <GuestBook />
-        </footer>
+        <h1>"Blog"</h1>
+        <Outlet />
+    }
+}
+
+#[component]
+pub fn Post() -> impl IntoView {}
+
+#[component]
+pub fn PostList() -> impl IntoView {
+    view! {
+        <ul>
+            <li>"This is"</li>
+            <li>"A list"</li>
+            <li>"Of posts"</li>
+        </ul>
     }
 }
 
@@ -73,11 +109,6 @@ pub fn GuestBook() -> impl IntoView {
             <img src="assets/written_in_vi.gif" />
         </a>
     }
-}
-
-#[component]
-pub fn Posts() -> impl IntoView {
-    view! { <h1>"Blog Posts"</h1> }
 }
 
 #[component]
