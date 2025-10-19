@@ -6,15 +6,16 @@
 //      - Edit blog posts in neovim or obsidian
 //      - Polish them up
 //      - Add them to the wizards-lair directory and publish them, with post metadata
+//  - Look at a proc macro that injects the posts at compile time
 
+// use markdown_view_leptos::markdown_view;
 use leptos::{Params, prelude::*};
 use leptos_router::{
     components::{Outlet, ParentRoute, Route, Router, Routes},
-    hooks::{use_params, use_query},
+    // hooks::{use_params, use_query},
     params::Params,
     path,
 };
-use markdown_view_leptos::markdown_view;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -92,13 +93,17 @@ pub fn Post() -> impl IntoView {}
 
 #[component]
 pub fn PostList() -> impl IntoView {
-    view! {
-        <ul>
-            <li>"This is"</li>
-            <li>"A list"</li>
-            <li>"Of posts"</li>
-        </ul>
-    }
+    // let posts: Vec<String> = match get_posts() {
+    //     Ok(p) => p
+    //         .iter()
+    //         .map(|r| r.to_str().map_or("".to_string(), |s| s.to_string()))
+    //         .collect(),
+    //     Err(e) => {
+    //         vec!["No posts found :(".to_string(), e.to_string()]
+    //     }
+    // };
+    //
+    // view! { <ul>{posts.into_iter().map(|n| view! { <li>{n}</li> }).collect::<Vec<_>>()}</ul> }
 }
 
 // Shows guest book button
