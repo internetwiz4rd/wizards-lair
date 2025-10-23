@@ -5,6 +5,7 @@ test:
 
 clean:
 	trunk clean
+	cargo clean
 
 build: clean
 	trunk build --release

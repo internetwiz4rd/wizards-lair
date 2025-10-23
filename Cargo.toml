@@ -10,4 +10,5 @@ edition = "2024"
 leptos = { version = "0.8.2", features = ["csr"] }
 leptos_router = "0.8.2"
 markdown_view_leptos = "0.1.0"
+serde = { version = "1.0.228", features = ["derive"] }
 stylance = "0.6.0"

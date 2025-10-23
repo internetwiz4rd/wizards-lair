@@ -24,9 +24,11 @@
       buildInputs = with pkgs; [
         rustToolchain
 
+        cargo-expand
         cargo-info
         cargo-make
         clippy
+        gnumake
         lazygit
         neocities-cli
         rust-analyzer

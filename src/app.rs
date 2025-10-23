@@ -1,5 +1,4 @@
 // TODO:
-//  - Add the markdown_view_leptos crate to the project
 //  - Figure out how to convert the blog posts at compile time, and serve them in O(1) time
 //  - Finish styling the websit, use a dark theme, and add some decorations
 //  - Create a workflow to
@@ -8,14 +7,25 @@
 //      - Add them to the wizards-lair directory and publish them, with post metadata
 //  - Look at a proc macro that injects the posts at compile time
 
-// use markdown_view_leptos::markdown_view;
-use leptos::{Params, prelude::*};
+// use std::{error, fmt};
+
+use leptos::{
+    // Params, //
+    prelude::*,
+};
 use leptos_router::{
-    components::{Outlet, ParentRoute, Route, Router, Routes},
-    // hooks::{use_params, use_query},
-    params::Params,
+    components::{
+        Outlet,      //
+        ParentRoute, //
+        Route,       //
+        Router,      //
+        Routes,      //
+    },
+    // hooks::use_params_map,
+    // params::Params,
     path,
 };
+// use markdown_view_leptos::markdown_view;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -43,7 +53,7 @@ pub fn App() -> impl IntoView {
                     <Route path=path!("/about") view=About />
                     <ParentRoute path=path!("/blog") view=Blog>
                         <Route path=path!(":id") view=Post />
-                        <Route path=path!("") view=PostList />
+                        <Route path=path!("") view=Posts />
                     </ParentRoute>
                 </Routes>
             </main>
@@ -60,20 +70,51 @@ pub fn Home() -> impl IntoView {
         <footer>
             <GuestBook />
         </footer>
-        <div class="fixed">"Hello!!"</div>
     }
 }
 
-#[derive(Params, Clone, Debug, PartialEq, Eq)]
-pub struct PostParams {
-    id: Option<String>,
-}
-
-#[derive(Debug)]
-pub enum PostError {
-    InvalidId,
-    PostNotFound,
-}
+// TODO: Implement post data structures after figuring out how to parse the content of a post file
+// into the struct
+//
+// #[derive(Debug)]
+// struct Post {
+//     // path: str,
+//     // title: str,
+//     // tags: Vec<str>,
+// }
+//
+// #[derive(Debug)]
+// struct PostList {
+//     posts: Vec<&'static str>,
+// }
+//
+// impl PostList {
+//     // fn new() -> PostList {
+//     //     let posts_from_file = include!("./../dist/post_list");
+//     //     PostList {
+//     //         posts: posts_from_file.to_vec(),
+//     //     }
+//     // }
+// }
+//
+// #[derive(Params, Clone, Debug, PartialEq, Eq)]
+// pub struct PostParams {
+//     id: Option<String>,
+// }
+//
+// #[derive(Debug)]
+// pub enum PostError {
+//     InvalidId,
+//     PostNotFound,
+// }
+//
+// impl error::Error for PostError {}
+//
+// impl fmt::Display for PostError {
+//     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+//         write!(f, "{:?}", self)
+//     }
+// }
 
 #[component]
 pub fn About() -> impl IntoView {
@@ -89,21 +130,30 @@ pub fn Blog() -> impl IntoView {
 }
 
 #[component]
-pub fn Post() -> impl IntoView {}
+pub fn Post() -> impl IntoView {
+    // let id = use_params_map().with(|params| params.get("id"));
+
+    // markdown_view!(file = id)
+}
 
 #[component]
-pub fn PostList() -> impl IntoView {
-    // let posts: Vec<String> = match get_posts() {
-    //     Ok(p) => p
-    //         .iter()
-    //         .map(|r| r.to_str().map_or("".to_string(), |s| s.to_string()))
-    //         .collect(),
-    //     Err(e) => {
-    //         vec!["No posts found :(".to_string(), e.to_string()]
-    //     }
-    // };
-    //
-    // view! { <ul>{posts.into_iter().map(|n| view! { <li>{n}</li> }).collect::<Vec<_>>()}</ul> }
+pub fn Posts() -> impl IntoView {
+    // let posts_list = PostList::new();
+    // markdown_view!("posts/test.md")
+    // view! { <ul>{posts_list.posts.into_iter().map(|p| view! { <li>{p}</li> }).collect_view()}</ul> }
+
+    let posts: Vec<&str> = include!("./../dist/post_list").to_vec();
+
+    view! {
+        <ul>
+            {posts
+                .into_iter()
+                .map(|p| {
+                    view! { <li>{p}</li> }
+                })
+                .collect_view()}
+        </ul>
+    }
 }
 
 // Shows guest book button
